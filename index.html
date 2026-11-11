@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>조금 다른 쪽으로 · 홍영은 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDEFF4; --surface:#F7F8FB; --ink:#1E2444; --muted:#596182;
+  --line:#BF8722; --line-soft:rgba(191,135,34,.32); --blue:#3B5A8A;
+  --hair:rgba(30,36,68,.14); --shadow:0 18px 40px -24px rgba(30,36,68,.45);
+  --serif:"Gowun Batang","Nanum Myeongjo","AppleMyungjo",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121830; --surface:#1A2140; --ink:#E7E9F2; --muted:#A1A8C4;
+    --line:#F0BE58; --line-soft:rgba(240,190,88,.28); --blue:#8EA8D6;
+    --hair:rgba(231,233,242,.14); --shadow:0 18px 40px -22px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121830; --surface:#1A2140; --ink:#E7E9F2; --muted:#A1A8C4;
+  --line:#F0BE58; --line-soft:rgba(240,190,88,.28); --blue:#8EA8D6;
+  --hair:rgba(231,233,242,.14); --shadow:0 18px 40px -22px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:keep-all}
+img,video,iframe{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--line);outline-offset:3px}
+
+/* ---------- 길 ---------- */
+.journey{position:relative}
+.route{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:0;overflow:visible}
+.route .ghost{fill:none;stroke:var(--hair);stroke-width:1.5;stroke-dasharray:2 9;stroke-linecap:round}
+.route .walked{fill:none;stroke:var(--line);stroke-width:2.5;stroke-linecap:round}
+.route .walker{fill:var(--line)}
+.route .halo{fill:var(--line-soft)}
+
+.wrap{position:relative;z-index:1;width:min(1120px,100%);margin:0 auto;padding:0 clamp(28px,7vw,88px)}
+section{position:relative;z-index:1;min-height:100vh;padding:15vh 0}
+
+/* ---------- 첫 화면 ---------- */
+.hero{display:flex;align-items:center;padding-top:10vh}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(3.6rem,13vw,10.5rem);line-height:1.02;letter-spacing:-.02em}
+.hero h1 span{display:block;opacity:0;transform:translateY(18px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1 span:nth-child(2){margin-left:1.1em;animation-delay:.25s}
+.hero h1 span:nth-child(3){margin-left:2.3em;animation-delay:.5s;rotate:-5deg;transform-origin:left center}
+@keyframes rise{to{opacity:1;transform:none}}
+.hero-meta{margin-top:7vh;display:flex;flex-wrap:wrap;align-items:flex-end;gap:28px 56px;opacity:0;animation:rise .9s .9s forwards}
+.hero-meta p{max-width:32ch;color:var(--muted);font-size:1.05rem}
+.hero-meta strong{display:block;color:var(--ink);font-family:var(--serif);font-size:1.5rem;font-weight:700;margin-bottom:4px}
+.play-btn{display:inline-flex;align-items:center;gap:12px;font:500 1rem var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:999px;padding:12px 22px 12px 14px;cursor:pointer;transition:background .2s,color .2s}
+.play-btn:hover{background:var(--ink);color:var(--bg)}
+.play-btn .ico{width:30px;height:30px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#1E2444}
+.play-btn svg{width:12px;height:12px}
+.scroll-hint{position:absolute;bottom:5vh;left:50%;translate:-50% 0;font-size:.85rem;color:var(--muted);opacity:0;animation:rise .9s 1.4s forwards}
+
+/* ---------- 공통 ---------- */
+.kind{display:inline-block;font-size:.88rem;font-weight:600;color:var(--line);margin-bottom:18px}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(2.3rem,5.4vw,4.2rem);line-height:1.15;letter-spacing:-.015em;margin-bottom:28px}
+h3{font-family:var(--serif);font-weight:700;font-size:1.35rem;margin-bottom:10px}
+.lede{font-size:1.12rem;max-width:36em;color:var(--ink)}
+.note{color:var(--muted);max-width:36em}
+.frame{border-radius:10px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+.frame video{width:100%;aspect-ratio:16/9;background:#000}
+.cap{font-size:.88rem;color:var(--muted);margin-top:10px}
+.missing{display:grid;place-items:center;text-align:center;padding:28px;min-height:160px;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--hair) 10px 11px);color:var(--muted);font-size:.85rem;border-radius:8px;border:1px dashed var(--hair);word-break:break-all}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.link-btn{font:500 .95rem var(--sans);text-decoration:none;border-bottom:1.5px solid var(--line);padding-bottom:2px}
+.link-btn:hover{color:var(--line)}
+
+/* ---------- 지나온 길 ---------- */
+.path-list{list-style:none;margin-top:56px;display:grid;gap:0;max-width:760px}
+.path-list li{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--hair)}
+.path-list li:last-child{border-bottom:1px solid var(--hair)}
+.path-list li:nth-child(2){margin-left:4%}
+.path-list li:nth-child(3){margin-left:8%}
+.path-list li:nth-child(4){margin-left:12%}
+.path-list time{font-family:var(--serif);font-size:1.15rem;color:var(--line);font-weight:700}
+.path-list b{display:block;font-size:1.1rem;margin-bottom:2px}
+.path-list span{color:var(--muted)}
+.path-list li.now b{color:var(--line)}
+
+/* ---------- 에뜨왈 ---------- */
+.etoile-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,90px);align-items:center}
+.tag-stage{display:grid;place-items:center;min-height:460px}
+.tag-wrap{position:relative;width:min(270px,78%);rotate:-6deg;padding-top:90px}
+.tag-wrap .string{position:absolute;top:0;left:50%;width:120px;height:120px;translate:-50% 0;overflow:visible}
+.tag{position:relative;aspect-ratio:1/1.75;clip-path:polygon(20% 0,80% 0,100% 11%,100% 100%,0 100%,0 11%);
+  background:#F4ECDD url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .28 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  filter:drop-shadow(0 20px 24px rgba(20,24,50,.28));display:flex;flex-direction:column;color:#1F2747;font-family:var(--serif)}
+.eyelet{position:absolute;top:5.5%;left:50%;translate:-50% 0;width:22px;height:22px;border-radius:50%;z-index:3;
+  background:radial-gradient(circle,var(--bg) 0 38%,#8A6420 40%,#E9C774 52%,#B78A2E 66%,#7A5418 78%,transparent 80%)}
+.tag-band{margin-top:19%;background:#1E2547;color:#E8C67A;text-align:center;padding:14px 10px 12px}
+.tag-band .logo{display:block;font-size:1.35rem;letter-spacing:.32em;padding-left:.32em;background:linear-gradient(100deg,#B98B33,#F5DD9A 45%,#C99A45 60%,#F0D38A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag-band small{display:block;font:500 .6rem var(--sans);letter-spacing:.3em;color:rgba(232,198,122,.75);margin-top:2px}
+.tag-band svg{width:14px;height:14px;margin:0 auto 6px;display:block}
+.tag-info{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;padding:14px 18px 10px;font:500 .64rem var(--sans);letter-spacing:.06em;color:#5B5440;border-bottom:1px dashed rgba(31,39,71,.25)}
+.tag-info dt{color:#8C8370}
+.tag-prices{flex:1;padding:12px 18px 6px;display:flex;flex-direction:column;gap:6px;position:relative}
+.price{font-size:1.45rem;font-weight:700;position:relative;width:fit-content;transition:opacity .6s,color .6s}
+.price::after{content:"";position:absolute;left:-5px;right:-5px;top:55%;height:2.5px;background:#B8322A;border-radius:2px;transform:scaleX(0) rotate(-4deg);transform-origin:left;transition:transform .45s}
+.price.struck::after{transform:scaleX(1) rotate(-4deg)}
+.price.struck{color:#8C8370}
+.price.p2,.price.p3{opacity:0}
+.price.show{opacity:1}
+.price.p1{font-size:1.25rem}
+.stamp{position:absolute;right:12px;bottom:4px;rotate:-14deg;font-size:1.25rem;font-weight:700;color:#A8741F;border:2.5px solid #A8741F;border-radius:6px;padding:2px 10px;letter-spacing:.08em;opacity:0;scale:1.6;transition:opacity .35s,scale .35s cubic-bezier(.3,1.6,.5,1);mix-blend-mode:multiply}
+.stamp::before{content:"";position:absolute;inset:2px;border:1px solid #A8741F;border-radius:3px;opacity:.6}
+.tag-wrap.gone .stamp{opacity:.92;scale:1}
+.price.p3{display:none}
+.barcode{margin:6px 18px 0;height:34px;background:repeating-linear-gradient(90deg,#1F2747 0 2px,transparent 2px 4px,#1F2747 4px 5px,transparent 5px 8px,#1F2747 8px 11px,transparent 11px 12px,#1F2747 12px 13px,transparent 13px 16px)}
+.code{font:500 .58rem var(--sans);letter-spacing:.35em;text-align:center;color:#5B5440;padding:4px 0 16px}
+.sale{position:absolute;right:-22px;top:43%;width:76px;height:76px;border-radius:50%;background:#C23A2E;color:#FFF5EA;display:grid;place-content:center;text-align:center;font:700 1.25rem/1 var(--sans);rotate:12deg;box-shadow:0 8px 16px rgba(120,20,10,.35);opacity:0;scale:.4;transition:opacity .3s,scale .4s cubic-bezier(.3,1.6,.5,1),translate .6s}
+.sale small{display:block;font-size:.62rem;letter-spacing:.15em;margin-top:3px}
+.tag-wrap.sale-on .sale{opacity:1;scale:1}
+.tag-wrap.gone .sale{opacity:0;translate:30px 40px}
+.story{list-style:none;counter-reset:s;margin:40px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.story li{counter-increment:s;padding-top:14px;border-top:2px solid var(--hair)}
+.story li:last-child{border-top-color:var(--line)}
+.story li::before{content:counter(s);display:block;font-family:var(--serif);color:var(--line);font-weight:700}
+.story b{display:block;font-size:.98rem}
+.story span{font-size:.85rem;color:var(--muted);line-height:1.5;display:block}
+.intent{margin:72px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.intent blockquote{grid-column:1/-1;font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.45;max-width:24em}
+.flip{margin-top:64px}
+.flip iframe{width:100%;height:min(76vh,720px);border:0;background:var(--surface)}
+
+/* ---------- 개미 ---------- */
+.ant-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:start;margin-top:12px}
+.cuts{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;background:var(--ink);border-radius:8px;box-shadow:var(--shadow)}
+.cuts figure{position:relative;background:var(--surface);border-radius:3px;overflow:hidden}
+.cuts img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.cuts figcaption{position:absolute;left:8px;top:6px;font:700 .85rem var(--serif);color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.cuts .missing{aspect-ratio:1/1;min-height:0;border-radius:3px}
+
+
+/* ---------- 개미 기획 ---------- */
+.plan{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);margin-top:56px;background:var(--bg);box-shadow:0 0 0 28px var(--bg)}
+.plan h3{font-size:1.4rem;margin-bottom:16px}
+.plan .why p{margin-bottom:14px;max-width:32em}
+.plan .why p.muted{color:var(--muted)}
+.plan .pun{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin-top:20px;padding:18px 20px;border-radius:10px;background:var(--surface)}
+.plan .pun dt{font-family:var(--serif);font-weight:700;color:var(--line)}
+.plan .pun dd{color:var(--muted)}
+.flow{list-style:none;counter-reset:st}
+.flow li{counter-increment:st;display:grid;grid-template-columns:40px 1fr;gap:6px;padding:16px 0;border-top:1px solid var(--hair)}
+.flow li:last-child{border-bottom:1px solid var(--hair)}
+.flow li::before{content:counter(st);font-family:var(--serif);font-weight:700;color:var(--line);font-size:1.2rem;line-height:1.5}
+.flow b{display:block}
+.flow span{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.plan{grid-template-columns:1fr}}
+
+/* ---------- 등산 ---------- */
+.cast{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);margin-top:48px}
+.cast figure img{width:100%;height:auto;border-radius:10px;box-shadow:var(--shadow);background:var(--surface);cursor:zoom-in}
+.cast figcaption{margin-top:12px}
+.cast figcaption b{font-family:var(--serif);font-size:1.15rem}
+.trail{display:grid;grid-template-columns:1fr 1fr;gap:28px 24px;margin-top:48px}
+.trail img{width:100%;height:auto;border-radius:10px;box-shadow:var(--shadow);background:var(--surface);cursor:zoom-in}
+.trail figcaption{margin-top:12px;font-size:1rem}
+.trail figcaption b{font-family:var(--serif);color:var(--line);margin-right:8px}
+.cast .missing,.trail .missing{min-height:200px}
+.zoom-hint{font-size:.85rem;color:var(--muted);margin-top:14px}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(10,14,30,.88);display:none;place-items:center;padding:4vh 4vw;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:100%;max-height:86vh;border-radius:8px;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.lightbox p{color:#F4F2EC;text-align:center;margin-top:14px;font-family:var(--serif);font-size:1.2rem}
+.subhead{margin-top:64px;font-size:.95rem;font-weight:600;color:var(--muted)}
+
+/* ---------- 노래 ---------- */
+.song{text-align:center}
+.song .lede,.song .note{margin-left:auto;margin-right:auto}
+.record-btn{background:none;border:0;cursor:pointer;margin:48px auto 28px;display:block;border-radius:50%}
+.record{width:min(340px,72vw);height:auto;animation:spin 6s linear infinite;animation-play-state:paused;filter:drop-shadow(0 24px 30px rgba(0,0,0,.28))}
+body.is-playing .record{animation-play-state:running}
+@keyframes spin{to{rotate:360deg}}
+.song-status{font-weight:500}
+.bar{width:min(420px,80vw);height:4px;background:var(--hair);border-radius:4px;margin:18px auto 0;overflow:hidden;cursor:pointer}
+.bar i{display:block;height:100%;width:0;background:var(--line)}
+.times{width:min(420px,80vw);margin:6px auto 0;display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+
+
+/* ---------- 노래 기획 ---------- */
+.song-story{margin:88px auto 0;max-width:680px;background:var(--bg);padding:28px 0;box-shadow:0 0 0 28px var(--bg);display:grid;grid-template-columns:1fr;text-align:left}
+.song-story h3{font-size:1.5rem;margin-bottom:16px}
+.song-story .why p{color:var(--ink);margin-bottom:14px;max-width:34em}
+.song-story .why p.muted{color:var(--muted)}
+.song-story .pull{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.75rem);line-height:1.5;color:var(--line);margin-top:26px;padding-left:20px;border-left:2px solid var(--line)}
+@media (max-width:860px){.song-story{grid-template-columns:1fr;margin-top:64px}}
+
+/* ---------- 배운 것 ---------- */
+.lessons{display:grid;gap:0;margin-top:40px;max-width:820px}
+.lessons div{padding:34px 0;border-top:1px solid var(--hair);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px}
+.lessons div:last-child{border-bottom:1px solid var(--hair)}
+.lessons h3{margin:0;font-size:1.45rem;line-height:1.4}
+.lessons p{color:var(--muted)}
+
+/* ---------- 마무리 ---------- */
+.outro{display:flex;align-items:center;text-align:center;min-height:90vh}
+.outro .wrap{display:flex;flex-direction:column;align-items:center}
+.outro h2{font-size:clamp(2.6rem,7vw,5.6rem)}
+.outro p{color:var(--muted);font-size:1.1rem}
+.outro .sign{margin-top:36px;font-family:var(--serif);font-size:1.4rem;color:var(--ink)}
+
+
+/* ---------- Canva 이미지 ---------- */
+/* 첫 화면: 사진은 오른쪽에 은은하게, 제목이 먼저 읽히도록 */
+/* 첫 화면: 그림은 카드 안에, 글자는 그림 위에 */
+.hero{flex-direction:column;justify-content:center;padding:7vh 0 12vh}
+.hero-card{position:relative;z-index:1;width:min(1180px,calc(100% - 2*clamp(20px,4vw,56px)));min-height:min(80vh,760px);margin:0 auto;border-radius:18px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;z-index:0}
+.hero.has-photo .hero-card{box-shadow:0 40px 80px -40px rgba(20,24,50,.55)}
+.hero.has-photo .hero-card::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(12,16,36,.82) 0,rgba(12,16,36,.45) 42%,rgba(12,16,36,0) 72%),linear-gradient(to left,rgba(12,16,36,.6) 0,rgba(12,16,36,.25) 40%,rgba(12,16,36,0) 62%)}
+.hero-inner{position:relative;z-index:2;width:min(640px,56%);margin-left:auto;padding:clamp(28px,5vw,72px) clamp(28px,4vw,64px) clamp(28px,5vw,72px) 0}
+.hero h1{font-size:clamp(3rem,6.4vw,6.2rem)}
+.hero.has-photo h1{color:#F7F2E6;text-shadow:0 4px 28px rgba(8,10,24,.45)}
+.hero.has-photo .hero-meta p{color:rgba(247,242,230,.85)}
+.hero.has-photo .hero-meta strong{color:#F7F2E6}
+.hero.has-photo .play-btn{color:#F7F2E6;border-color:rgba(247,242,230,.85);background:rgba(12,16,36,.25);backdrop-filter:blur(6px)}
+.hero.has-photo .play-btn:hover{background:#F7F2E6;color:#1E2444}
+.hero-meta{margin-top:5vh}
+.scroll-hint{bottom:4vh}
+@media (max-width:860px){.hero-card{min-height:78vh}.hero-inner{width:100%;margin-left:0;padding:28px}.hero.has-photo .hero-card::before{background:linear-gradient(to top,rgba(12,16,36,.85) 0,rgba(12,16,36,.4) 50%,rgba(12,16,36,0) 75%)}}
+/* 지나온 길: 연혁 뒤에 연하게 깔기 */
+.path-wrap{position:relative;margin-top:56px;max-width:760px}
+.path-wrap .path-list{position:relative;z-index:1;margin-top:0}
+.path-bg{position:absolute;inset:-48px -18% -48px -6%;width:124%;height:calc(100% + 96px);object-fit:cover;object-position:50% 55%;z-index:0;opacity:.22;pointer-events:none;
+  -webkit-mask-image:radial-gradient(closest-side at 50% 50%,#000 35%,transparent 100%);mask-image:radial-gradient(closest-side at 50% 50%,#000 35%,transparent 100%)}
+/* 마무리: 얼굴이 잘리지 않도록 위쪽 기준 */
+.outro-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 12%;z-index:0}
+.outro .wrap{z-index:2}
+.outro.has-photo::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,var(--bg) 0,transparent 7%),linear-gradient(to left,rgba(14,18,40,.55) 0,rgba(14,18,40,.15) 50%,transparent 70%)}
+.outro.has-photo .wrap{align-items:flex-end;text-align:right}
+.outro.has-photo h2,.outro.has-photo .sign{color:#F6F1E4;text-shadow:0 2px 18px rgba(10,14,30,.6)}
+.outro.has-photo p{color:rgba(246,241,228,.9);text-shadow:0 1px 12px rgba(10,14,30,.7)}
+@media (max-width:860px){
+      .path-bg{inset:-24px -10%;width:120%;opacity:.18}
+  .outro.has-photo .wrap{align-items:center;text-align:center}
+  .outro.has-photo::before{background:linear-gradient(to bottom,var(--bg) 0,transparent 7%),rgba(14,18,40,.45)}
+}
+
+/* ---------- 미니 플레이어 ---------- */
+.mini{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;align-items:center;gap:12px;background:var(--surface);color:var(--ink);border:1px solid var(--hair);border-radius:999px;padding:8px 18px 8px 8px;box-shadow:var(--shadow);font-size:.88rem;transform:translateY(140%);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+body.song-started .mini{transform:none}
+.mini button{width:36px;height:36px;border-radius:50%;border:0;background:var(--line);color:#1E2444;cursor:pointer;display:grid;place-items:center}
+.mini svg{width:12px;height:12px}
+.keys{position:fixed;left:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;font-size:.78rem;color:var(--muted);opacity:.75}
+
+@media (max-width:860px){
+  body{font-size:16px}
+  .etoile-grid,.ant-grid,.intent,.lessons div{grid-template-columns:1fr}
+  .story{grid-template-columns:1fr 1fr}
+  .story li:last-child{grid-column:1/-1}
+  .trail{grid-template-columns:1fr}
+  .cast{grid-template-columns:1fr}
+  .path-list li{grid-template-columns:1fr;gap:4px}
+  .path-list li:nth-child(n){margin-left:0}
+  .tag-stage{min-height:320px}
+  .keys{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}
+  html{scroll-behavior:auto}
+  .record{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="journey" id="journey">
+  <svg class="route" id="route" aria-hidden="true">
+    <path class="ghost" id="ghost"/>
+    <path class="walked" id="walked"/>
+    <circle class="halo" id="halo" r="14"/>
+    <circle class="walker" id="walker" r="6"/>
+  </svg>
+
+  <!-- 첫 화면 -->
+  <section class="hero" data-slide>
+    <div class="hero-card">
+    <img class="hero-photo" data-photo data-src="cover_img/cover.jpg" alt="">
+    <div class="hero-inner">
+      <h1><span>조금</span><span>다른</span><span>쪽으로</span></h1>
+      <div class="hero-meta">
+        <p><strong>홍영은</strong>AI를 배운 두 달 동안 만든 그림책, 영상, 그리고 노래를 소개합니다.</p>
+        <button class="play-btn" data-toggle-song>
+          <span class="ico"><svg viewBox="0 0 12 12" class="i-play"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg></span>
+          <span class="label">노래 들으며 보기</span>
+        </button>
+      </div>
+    </div>
+  </div>
+    <div class="scroll-hint" data-stop data-x="50" data-dy="-36">아래로 내려 길을 따라가 보세요</div>
+  </section>
+
+  <!-- 지나온 길 -->
+  <section data-slide>
+    <div class="wrap">
+      <span class="kind" data-stop data-x="12">지나온 길</span>
+      <h2>계획대로 걸어온 길은<br>아니었습니다</h2>
+      <p class="lede">갈림길을 만날 때마다 조금씩 다른 쪽으로 방향을 틀었습니다. 그렇게 걷다 보니, 지금 여기서 AI를 만났습니다.</p>
+      <div class="path-wrap">
+      <img class="path-bg" data-photo data-src="cover_img/path.jpg" alt="">
+      <ol class="path-list">
+        <li><time>1999 – 2023</time><div><b>글로벌 의류 기업 MD</b><span>해외영업, 소싱, 생산 관리 24년</span></div></li>
+        <li><time>2023 – 2025</time><div><b>공인중개사</b><span>빌라부터 상가, 오피스까지</span></div></li>
+        <li><time>2025 –</time><div><b>무인 매장 창업</b><span>안마의자 무인 매장 직접 운영</span></div></li>
+        <li class="now"><time>지금</time><div><b>AI 수업 두 달</b><span>그림책, 영상, 노래를 처음 만들어 보다</span></div></li>
+      </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 에뜨왈의 꿈 -->
+  <section id="etoile" data-slide>
+    <div class="wrap">
+      <div class="etoile-grid">
+        <div>
+          <span class="kind" data-stop data-x="88">성인을 위한 그림책, 24쪽</span>
+          <h2>에뜨왈의 꿈</h2>
+          <p class="lede">스포트라이트를 꿈꾸던 런웨이 드레스 에뜨왈이 가격표와 이름을 모두 잃은 뒤, 세상을 기록하는 사진작가를 만나 전혀 다른 모습으로 꿈을 이루는 이야기입니다.</p>
+          <p class="note" style="margin-top:14px">24년 동안 옷을 만들고 팔아 온 사람이라서 쓸 수 있었던 이야기이기도 합니다.</p>
+        </div>
+        <div class="tag-stage">
+          <div class="tag-wrap" id="priceTag" aria-label="가격표: 390만 원에서 90% 할인된 39만 원, 그리고 가격 없음">
+            <svg class="string" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 102 C40 70, 30 40, 48 4 M60 102 C78 72, 92 44, 74 2" fill="none" stroke="#B59A6A" stroke-width="2" stroke-linecap="round"/></svg>
+            <div class="tag">
+              <span class="eyelet"></span>
+              <div class="tag-band">
+                <svg viewBox="0 0 24 24"><path d="M12 1.5l3 7.3 7.8.6-6 5.1 1.9 7.6L12 18l-6.7 4.1 1.9-7.6-6-5.1 7.8-.6z" fill="#E8C67A"/></svg>
+                <span class="logo">ÉTOILE</span><small>ATELIER COUTURE</small>
+              </div>
+              <dl class="tag-info">
+                <dt>STYLE</dt><dd>Trench Dress</dd>
+                <dt>COLOR</dt><dd>Midnight Navy</dd>
+                <dt>COLLECTION</dt><dd>Runway</dd>
+              </dl>
+              <div class="tag-prices">
+                <div class="price p1">₩ 3,900,000</div>
+                <div class="price p2">₩ 390,000</div>
+                <div class="price p3"></div>
+                <div class="stamp">가격 없음</div>
+              </div>
+              <div class="barcode"></div>
+              <div class="code">0 7 2 0 2 6 1 9 9 9</div>
+            </div>
+            <div class="sale">90%<small>OFF</small></div>
+          </div>
+        </div>
+      </div>
+
+      <ol class="story">
+        <li><b>런웨이</b><span>30초의 스포트라이트</span></li>
+        <li><b>아울렛</b><span>90% 할인, 39만 원</span></li>
+        <li><b>소각 위기</b><span>팔리지 않은 재고</span></li>
+        <li><b>새 주인</b><span>라벨 없이 건네지다</span></li>
+        <li><b>별빛 아래</b><span>또 다른 모습의 꿈</span></li>
+      </ol>
+
+      <div class="intent">
+        <blockquote>“가치는 가격표가 정하지 않는다”</blockquote>
+        <div><h3>별의 순환</h3><p class="note">디자이너가 수놓은 별을 새 주인 서하가 다시 수놓습니다. 한 번도 만나지 않은 두 사람이 별로 이어집니다.</p></div>
+        <div><h3>숨은 연결고리</h3><p class="note">런웨이 객석 맨 끝의 작은 불빛이, 마지막 장 서하의 작업실 벽에 걸린 빛바랜 사진 한 장으로 돌아옵니다.</p></div>
+      </div>
+
+      <div class="flip">
+        <div class="frame"><iframe data-src="에뜨왈의꿈 발표/etoile_flipbook.html" title="에뜨왈의 꿈 플립북"></iframe></div>
+        <div class="links">
+          <a class="link-btn" data-href="에뜨왈의꿈 발표/etoile_flipbook.html" target="_blank">플립북 크게 보기</a>
+          <a class="link-btn" data-href="에뜨왈의꿈 발표/에뜨왈의_꿈_eBook (1).pdf" target="_blank">eBook PDF 열기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 개미는 오늘도 존버중 -->
+  <section data-slide>
+    <div class="wrap">
+      <span class="kind" data-stop data-x="12">1분 영상</span>
+      <h2>개미는 오늘도 존버중</h2>
+      <p class="lede">고전 동화 ‘개미와 베짱이’를 오늘의 주식 시장으로 옮겼습니다. 4컷 이미지로 장면을 먼저 만들고, 각 컷을 영상으로 이어 붙였습니다.</p>
+      <div class="plan">
+        <div class="why">
+          <h3>기획 의도</h3>
+          <p>열심히 일한 개미는 겨울을 나고, 놀기만 한 베짱이는 굶는다. 누구나 아는 이 교훈이 오늘의 주식 시장에서도 통할까, 하는 질문에서 시작했습니다.</p>
+          <p>요즘 ‘개미’는 개인 투자자를 부르는 말이기도 합니다. 익숙한 동화를 지금 우리 이야기로 비틀어, 웃음 속에 공감을 담고 싶었습니다.</p>
+          <dl class="pun">
+            <dt>개미</dt><dd>부지런한 일꾼이자, 개인 투자자</dd>
+            <dt>존버</dt><dd>떨어져도 팔지 않고 끝까지 버티기</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>워크플로우</h3>
+          <ol class="flow">
+            <li><div><b>아이디어</b><span>고전 동화와 오늘의 상황을 겹쳐, ‘개미’라는 말에서 출발</span></div></li>
+            <li><div><b>4컷 콘티</b><span>기승전결 네 장면을 이미지로 먼저 만들기</span></div></li>
+            <li><div><b>컷별 영상화</b><span>각 이미지를 첫 장면으로 삼아 짧은 영상 생성</span></div></li>
+            <li><div><b>편집</b><span>네 컷을 1분 영상으로 이어 붙여 완성</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="ant-grid" style="margin-top:64px">
+        <div>
+          <div class="cuts">
+            <figure><img data-src="개미는_오늘도_존버중/1.png" alt="4컷 중 첫 번째 장면"><figcaption>1</figcaption></figure>
+            <figure><img data-src="개미는_오늘도_존버중/2.png" alt="4컷 중 두 번째 장면"><figcaption>2</figcaption></figure>
+            <figure><img data-src="개미는_오늘도_존버중/3.png" alt="4컷 중 세 번째 장면"><figcaption>3</figcaption></figure>
+            <figure><img data-src="개미는_오늘도_존버중/4.png" alt="4컷 중 네 번째 장면"><figcaption>4</figcaption></figure>
+          </div>
+          <p class="cap">먼저 만든 4컷 이미지</p>
+        </div>
+        <div>
+          <div class="frame"><video controls preload="metadata" playsinline data-src="개미는_오늘도_존버중/개미는_오늘도_존버중.mp4"></video></div>
+          <p class="cap">완성 영상</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 도대체 등산은 왜 하는거야 -->
+  <section data-slide>
+    <div class="wrap">
+      <span class="kind" data-stop data-x="88">30초 스토리 영상, 구글 플로우</span>
+      <h2>도대체 등산은<br>왜 하는 거야</h2>
+      <p class="lede">인물 세 명과 배경 네 곳을 먼저 설정한 뒤, 장면을 이어 만든 첫 스토리 영상입니다. 설정을 먼저 정하니 장면이 바뀌어도 인물이 흔들리지 않았습니다.</p>
+
+      <p class="subhead">등장인물</p>
+      <div class="cast" style="margin-top:18px">
+        <figure><img data-src="도대체_등산은_왜하는거야/Man_character_sheet_portrait_2K_20261001153636.jpg" alt="지훈 캐릭터 시트"><figcaption><b>지훈</b></figcaption></figure>
+        <figure><img data-src="도대체_등산은_왜하는거야/Woman_wearing_windbreaker_and_boots_2K_20261001153507.jpg" alt="은비 캐릭터 시트"><figcaption><b>은비</b></figcaption></figure>
+        <figure><img data-src="도대체_등산은_왜하는거야/Grandma_wearing_hiking_gear_2K_20261001153543.jpg" alt="산악회 할머니 캐릭터 시트"><figcaption><b>산악회 할머니</b></figcaption></figure>
+      </div>
+
+      <p class="zoom-hint">이미지를 누르면 크게 볼 수 있어요</p>
+
+      <p class="subhead">오르는 길</p>
+      <div class="trail" style="margin-top:18px">
+        <figure><img data-src="도대체_등산은_왜하는거야/Trailhead_clearing_in_morning_light_2K_20261001154029.jpg" alt="아침 햇살 속 등산로 입구"><figcaption><b>1</b>등산로 입구</figcaption></figure>
+        <figure><img data-src="도대체_등산은_왜하는거야/Steep_stone_steps_environment_views_2K_20261001154045.jpg" alt="가파른 돌계단"><figcaption><b>2</b>돌계단</figcaption></figure>
+        <figure><img data-src="도대체_등산은_왜하는거야/Rock_trail_midday_view_2K_20261001154105.jpg" alt="한낮의 바위길"><figcaption><b>3</b>바위길</figcaption></figure>
+        <figure><img data-src="도대체_등산은_왜하는거야/Landscape_view_from_mountain_summit_2K_20261001154023.jpg" alt="정상에서 본 풍경"><figcaption><b>4</b>정상</figcaption></figure>
+      </div>
+
+      <p class="subhead">완성 영상</p>
+      <div class="frame" style="margin-top:18px"><video controls preload="metadata" playsinline data-src="도대체_등산은_왜하는거야/도대체 등산은 왜 하는거야.mp4"></video></div>
+    </div>
+  </section>
+
+  <!-- 노래 -->
+  <section class="song" data-slide>
+    <div class="wrap">
+      <span class="kind" data-stop data-x="50">노래</span>
+      <h2>조금 다른 쪽으로</h2>
+      <p class="lede">이 포트폴리오의 제목이 된 노래입니다.</p>
+      <button class="record-btn" data-toggle-song aria-label="노래 재생 또는 일시정지">
+        <svg class="record" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="98" fill="#16192B"/>
+          <g fill="none" stroke="#2A2F4A" stroke-width="1">
+            <circle cx="100" cy="100" r="88"/><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="72"/>
+            <circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="56"/><circle cx="100" cy="100" r="48"/>
+          </g>
+          <path d="M40 60 A70 70 0 0 1 95 30" stroke="rgba(255,255,255,.12)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="36" fill="var(--line)"/>
+          <path d="M78 108 C88 108, 92 96, 100 96 S114 86, 122 90" fill="none" stroke="#1E2444" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="122" cy="90" r="2.6" fill="#1E2444"/>
+          <circle cx="100" cy="100" r="4" fill="#16192B"/>
+        </svg>
+      </button>
+      <div class="song-status" id="songStatus">레코드를 눌러 재생하세요</div>
+      <div class="bar" id="bar"><i id="barFill"></i></div>
+      <div class="times"><span id="tCur">0:00</span><span id="tDur">0:00</span></div>
+
+      <div class="song-story">
+        <div class="why">
+          <h3>왜 이 노래를 만들었나</h3>
+          <p>계획한 길에서 벗어날 때마다, 저는 그 순간을 ‘실패’라고 불렀습니다. 24년 다닌 업계를 떠날 때도, 전혀 다른 일을 새로 시작할 때도 그랬습니다.</p>
+          <p>그런데 돌아보니 그 꺾인 길들이 지금의 저를 만들었습니다. 이 노래는 그 순간들을 다른 이름으로 불러 보고 싶어서 시작했습니다.</p>
+          <p class="muted">에뜨왈이 가격표를 잃고 나서야 진짜 이야기를 시작했던 것처럼, 길을 잃은 줄 알았던 자리에서 새 길이 열린다는 이야기입니다.</p>
+          <p class="pull">길을 잃은 게 아니라,<br>조금 다른 쪽으로 걸었을 뿐</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 배운 것 -->
+  <section data-slide>
+    <div class="wrap">
+      <span class="kind" data-stop data-x="12">두 달 동안 배운 것</span>
+      <h2>AI가 알려 준 건<br>툴보다 저 자신이었습니다</h2>
+      <div class="lessons">
+        <div><h3>가장 좋은 재료는 이미 제 안에 있었습니다</h3><p>옷을 만들고 팔던 24년이 에뜨왈의 이야기가 됐습니다. AI는 경험을 대신 만들어 주지 않고, 꺼내 줍니다.</p></div>
+        <div><h3>먼저 설정하고, 그다음에 만듭니다</h3><p>인물과 배경, 4컷 콘티를 먼저 정해 두니 결과물이 흔들리지 않았습니다. 좋은 결과는 좋은 지시에서 나옵니다.</p></div>
+        <div><h3>손은 빌리고, 이야기는 제가 정합니다</h3><p>그림을 그리지 못해도, 작곡을 몰라도 만들 수 있었습니다. 대신 무엇을 말할지는 끝까지 제가 골랐습니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 마무리 -->
+  <section class="outro" data-slide>
+    <img class="outro-photo" data-photo data-src="cover_img/outro.jpg" alt="">
+    <div class="wrap">
+      <h2 data-stop data-x="50" data-dy="-30">다음 걸음도,<br>조금 다른 쪽으로</h2>
+      <p>끝까지 함께 걸어 주셔서 감사합니다.</p>
+      <div class="sign">홍영은</div>
+    </div>
+  </section>
+</div>
+
+<audio id="song" preload="metadata" data-src="조금 다른 쪽으로.mp3"></audio>
+
+<div class="mini" aria-live="polite">
+  <button data-toggle-song aria-label="노래 재생 또는 일시정지">
+    <svg viewBox="0 0 12 12" class="i-play"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>
+  </button>
+  <span>조금 다른 쪽으로</span>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-label="이미지 크게 보기"><figure><img alt=""><p></p></figure></div>
+<div class="keys">↑ ↓ 키로 한 화면씩 이동</div>
+
+<script>
+(function(){
+  /* 파일 경로 연결 (한글, 공백 파일명 대응) */
+  document.querySelectorAll('[data-src]').forEach(function(el){ el.src = encodeURI(el.dataset.src); });
+  document.querySelectorAll('[data-href]').forEach(function(el){ el.href = encodeURI(el.dataset.href); });
+
+  /* 파일을 못 찾을 때 안내 */
+  function missing(el){
+    var box = document.createElement('div');
+    box.className = 'missing';
+    box.innerHTML = '파일을 찾지 못했습니다<br><small>' + el.dataset.src + '</small><br><small>이 HTML 파일을 드라이브에서 받은 폴더 맨 위에 두세요</small>';
+    el.replaceWith(box);
+  }
+  /* Canva 이미지는 없으면 조용히 숨김 */
+  document.querySelectorAll('img[data-photo]').forEach(function(img){
+    var sec = img.closest('section');
+    img.addEventListener('load', function(){ if(sec) sec.classList.add('has-photo'); schedule(); });
+    /* jpg가 없으면 png, jpeg 순서로 찾아보고, 그래도 없으면 숨김 */
+    var tries = ['.png', '.jpeg', '.webp', '.JPG', '.PNG', '.jpg.jpg', '.png.png', '.jpg.png', '.png.jpg'];
+    img.addEventListener('error', function(){
+      var next = tries.shift();
+      if(next){ img.src = encodeURI(img.dataset.src.replace(/\.jpg$/, next)); }
+      else { img.remove(); schedule(); }
+    });
+  });
+  document.querySelectorAll('img[data-src]:not([data-photo])').forEach(function(img){
+    img.addEventListener('error', function(){ missing(img); }, {once:true});
+    img.addEventListener('load', schedule);
+  });
+  document.querySelectorAll('video[data-src]').forEach(function(v){
+    v.addEventListener('error', function(){ missing(v); }, {once:true});
+    v.addEventListener('loadedmetadata', schedule);
+    v.addEventListener('play', function(){ if(!song.paused) song.pause(); });
+  });
+
+  /* 이미지 크게 보기 */
+  var lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
+  document.querySelectorAll('.cast img, .trail img').forEach(function(img){
+    img.addEventListener('click', function(){
+      lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt;
+      var fc = img.closest('figure').querySelector('figcaption');
+      lbCap.textContent = fc ? fc.textContent : '';
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('open'); });
+  addEventListener('keydown', function(e){ if(e.key === 'Escape') lb.classList.remove('open'); });
+
+  /* 노래 */
+  var song = document.getElementById('song');
+  var status = document.getElementById('songStatus');
+  var fill = document.getElementById('barFill');
+  var PLAY = '<path d="M2 1l9 5-9 5z" fill="currentColor"/>';
+  var PAUSE = '<path d="M2 1h3v10H2zM7 1h3v10H7z" fill="currentColor"/>';
+  function fmt(s){ if(!isFinite(s)) return '0:00'; var m=Math.floor(s/60), r=Math.floor(s%60); return m+':'+(r<10?'0':'')+r; }
+  function sync(){
+    var on = !song.paused;
+    document.body.classList.toggle('is-playing', on);
+    document.querySelectorAll('.i-play').forEach(function(s){ s.innerHTML = on ? PAUSE : PLAY; });
+    document.querySelectorAll('.play-btn .label').forEach(function(l){ l.textContent = on ? '노래 일시정지' : '노래 들으며 보기'; });
+    status.textContent = on ? '재생 중' : (song.currentTime > 0 ? '일시정지됨' : '레코드를 눌러 재생하세요');
+  }
+  document.querySelectorAll('[data-toggle-song]').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(song.paused){
+        song.play().then(function(){ document.body.classList.add('song-started'); })
+          .catch(function(){ status.textContent = '노래 파일을 찾지 못했습니다. 조금 다른 쪽으로.mp3를 이 HTML과 같은 폴더에 두세요'; });
+      } else song.pause();
+    });
+  });
+  song.addEventListener('play', sync); song.addEventListener('pause', sync);
+  song.addEventListener('ended', sync);
+  song.addEventListener('timeupdate', function(){
+    fill.style.width = (song.duration ? song.currentTime/song.duration*100 : 0) + '%';
+    document.getElementById('tCur').textContent = fmt(song.currentTime);
+  });
+  song.addEventListener('loadedmetadata', function(){ document.getElementById('tDur').textContent = fmt(song.duration); });
+  document.getElementById('bar').addEventListener('click', function(e){
+    if(!song.duration) return;
+    var r = this.getBoundingClientRect();
+    song.currentTime = (e.clientX - r.left)/r.width * song.duration;
+  });
+
+  /* 조금씩 꺾이는 길 */
+  var journey = document.getElementById('journey');
+  var svg = document.getElementById('route');
+  var walked = document.getElementById('walked');
+  var ghost = document.getElementById('ghost');
+  var walker = document.getElementById('walker');
+  var halo = document.getElementById('halo');
+  var stops = Array.prototype.slice.call(document.querySelectorAll('[data-stop]'));
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var len = 0, pts = [], t0 = performance.now();
+
+  function build(){
+    var W = journey.clientWidth, H = journey.scrollHeight;
+    var narrow = W < 760;
+    var jt = journey.getBoundingClientRect().top + scrollY;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.style.height = H + 'px';
+    pts = stops.map(function(el){
+      var r = el.getBoundingClientRect();
+      var pct = parseFloat(el.dataset.x);
+      if(narrow) pct = pct < 50 ? 3 : (pct > 50 ? 97 : 50);
+      return [W*pct/100, r.top + scrollY - jt + r.height/2 + (parseFloat(el.dataset.dy)||0)];
+    });
+    var d = 'M' + pts[0][0] + ',' + pts[0][1];
+    for(var i=1;i<pts.length;i++){
+      var a = pts[i-1], b = pts[i], k = (b[1]-a[1])*.55;
+      d += ' C' + a[0] + ',' + (a[1]+k) + ' ' + b[0] + ',' + (b[1]-k) + ' ' + b[0] + ',' + b[1];
+    }
+    walked.setAttribute('d', d); ghost.setAttribute('d', d);
+    len = walked.getTotalLength();
+    walked.style.strokeDasharray = len;
+    update();
+  }
+  function lengthAtY(y){
+    var lo = 0, hi = len;
+    for(var i=0;i<22;i++){ var mid=(lo+hi)/2; if(walked.getPointAtLength(mid).y < y) lo = mid; else hi = mid; }
+    return lo;
+  }
+  function update(){
+    if(!len) return;
+    var jt = journey.getBoundingClientRect().top + scrollY;
+    var y = scrollY + innerHeight*.55 - jt;
+    var L = reduce ? len : lengthAtY(y);
+    /* 첫 화면 진입 연출: 처음 1.2초 동안 길이 그려지며 나타남 */
+    var intro = reduce ? 1 : Math.min(1, (performance.now()-t0)/1400);
+    L = L * intro;
+    walked.style.strokeDashoffset = len - L;
+    var p = walked.getPointAtLength(L);
+    walker.setAttribute('cx', p.x); walker.setAttribute('cy', p.y);
+    halo.setAttribute('cx', p.x); halo.setAttribute('cy', p.y);
+    if(intro < 1) requestAnimationFrame(update);
+  }
+  var pending = false;
+  function schedule(){ if(pending) return; pending = true; requestAnimationFrame(function(){ pending = false; build(); }); }
+  var ticking = false;
+  addEventListener('scroll', function(){ if(ticking) return; ticking = true; requestAnimationFrame(function(){ ticking = false; update(); }); }, {passive:true});
+  addEventListener('resize', schedule);
+  addEventListener('load', schedule);
+  if(document.fonts) document.fonts.ready.then(schedule);
+  if('ResizeObserver' in window) new ResizeObserver(schedule).observe(journey);
+  build();
+
+  /* 에뜨왈 가격표: 화면에 들어오면 한 번 */
+  var tag = document.getElementById('priceTag');
+  var p1 = tag.querySelector('.p1'), p2 = tag.querySelector('.p2'), p3 = tag.querySelector('.p3');
+  function runTag(){
+    if(reduce){ p1.classList.add('struck'); p2.classList.add('show','struck'); tag.classList.add('gone'); return; }
+    setTimeout(function(){ p1.classList.add('struck'); }, 300);
+    setTimeout(function(){ p2.classList.add('show'); tag.classList.add('sale-on'); }, 900);
+    setTimeout(function(){ p2.classList.add('struck'); }, 1700);
+    setTimeout(function(){ p3.classList.add('show'); tag.classList.add('gone'); }, 2400);
+  }
+  new IntersectionObserver(function(es, ob){
+    es.forEach(function(e){ if(e.isIntersecting){ runTag(); ob.disconnect(); } });
+  }, {threshold:.6}).observe(tag);
+
+  /* 발표 모드: 방향키로 한 화면씩 */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('[data-slide]'));
+  function current(){
+    var y = scrollY + 4, idx = 0;
+    slides.forEach(function(s,i){ if(s.getBoundingClientRect().top + scrollY <= y + innerHeight*.3) idx = i; });
+    return idx;
+  }
+  addEventListener('keydown', function(e){
+    var tag = (e.target.tagName || '').toLowerCase();
+    if(tag === 'video' || tag === 'audio' || tag === 'input' || tag === 'textarea') return;
+    var next = ['ArrowDown','PageDown'].indexOf(e.key) > -1 || (e.key === ' ' && tag !== 'button');
+    var prev = ['ArrowUp','PageUp'].indexOf(e.key) > -1;
+    if(!next && !prev) return;
+    if(lb.classList.contains('open')) return;
+    e.preventDefault();
+    var i = Math.max(0, Math.min(slides.length-1, current() + (next ? 1 : -1)));
+    slides[i].scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  });
+})();
+</script>
+</body>
+</html>
